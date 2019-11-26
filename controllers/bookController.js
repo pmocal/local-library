@@ -24,7 +24,7 @@ exports.index = function(req, res) {
 			Genre.countDocuments({}, callback);
 		}
 	}, function(err, results) {
-		res.render('default', { title: 'Local Library Home', whichPartial: 'index', error: err, data: results });
+		res.render('index', { title: 'Local Library Home', error: err, data: results });
 	});
 };
 
@@ -35,7 +35,7 @@ exports.book_list = function(req, res, next) {
 		.exec(function (err, list_books) {
 			if (err) { return next(err); }
 			//Successful, so render
-			res.render('default', { title: 'Book List', whichPartial: 'book_list', book_list: list_books });
+			res.render('book_list', { title: 'Book List', book_list: list_books });
 		});
 };
 

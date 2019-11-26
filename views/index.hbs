@@ -1,14 +1,20 @@
-<h1> {{ title }} </h1>
-<p> Welcome to <em> Local Library </em>, a basic Express app. </p>
-<h1> Dynamic content </h1>
-{{#if error }}
-	<p> error </p>
-{{else}}
-	<ul>
-		<li> books {{ data.book_count }} </li>
-		<li> copies {{ data.book_instance_count }} </li>
-		<li> copies available {{ data.book_instance_available_count }} </li>
-		<li> authors {{ data.author_count }} </li>
-		<li> genre {{ data.genre_count }} </li>
-	</ul>
-{{/if}}
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1> {{ title }} </h1>
+		<p> Welcome to <em> Local Library </em>, a basic Express app. </p>
+		<h1> Dynamic content </h1>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			<ul>
+				<li> books {{ data.book_count }} </li>
+				<li> copies {{ data.book_instance_count }} </li>
+				<li> copies available {{ data.book_instance_available_count }} </li>
+				<li> authors {{ data.author_count }} </li>
+				<li> genre {{ data.genre_count }} </li>
+			</ul>
+		{{/if}}
+	</div>
+</body>

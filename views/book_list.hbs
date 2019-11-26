@@ -1,17 +1,23 @@
-<h1> {{ title }} </h1>
-<p> Welcome to <em> Local Library </em>, a basic Express app. </p>
-{{#if error }}
-	<p> error </p>
-{{else}}
-	{{#if book_list }}
-		<ul>
-			{{#each book_list }}
-				<li> 
-					<a href='{{ this.url }}'> {{ this.title }} </a> | {{ this.author.name }}
-				</li>
-			{{/each}}
-		</ul>
-	{{else}}
-		<p> There are no books </p>
-	{{/if}}
-{{/if}}
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1> {{ title }} </h1>
+		<p> Welcome to <em> Local Library </em>, a basic Express app. </p>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			{{#if book_list }}
+				<ul>
+					{{#each book_list }}
+						<li> 
+							<a href='{{ this.url }}'> {{ this.title }} </a> | {{ this.author.name }}
+						</li>
+					{{/each}}
+				</ul>
+			{{else}}
+				<p> There are no books </p>
+			{{/if}}
+		{{/if}}
+	</div>
+</body>
