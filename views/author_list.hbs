@@ -1,0 +1,21 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<div>
+			{{#if error }}
+				<p> error </p>
+			{{else}}
+				<ul>
+					{{#if author_list }}
+						{{#each author_list}}
+							<li>
+								<a href="{{this.url}}">{{this.name}}</a> ({{this.date_of_birth}} - {{this.date_of_death}})
+							</li>
+						{{/each}}
+					{{/if}}
+				</ul>
+			{{/if}}
+		</div>
+	</div>
+</body>

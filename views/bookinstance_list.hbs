@@ -13,7 +13,7 @@
 						<li> 
 							<a href='{{ this.url }}'> {{ this.book.title }} : {{ this.imprint }}</a> - 
 							{{#ifNotEquals this.status "Available"}}
-								<span>Due: {{ this.due_back }}</span>
+								<span>Due: {{ this.due_back_formatted }}</span>
 								{{#ifNotEquals this.status "Maintenance"}}
 									<span class="text-warning">{{ this.status }}</span>
 								{{/ifNotEquals}}
