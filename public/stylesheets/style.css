@@ -1,6 +1,8 @@
 * {
-	font-family: "Lucida Grande";
-	background-color: tan;
+	font-family: 'Avenir', Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #2c3e50;
 }
 
 .grid-container {
@@ -17,4 +19,16 @@
 
 .content {
 	grid-column: 2;
+}
+
+.text-success {
+	color: green;
+}
+
+.text-warning {
+	color: brown;
+}
+
+.text-danger {
+	color: red;
 }

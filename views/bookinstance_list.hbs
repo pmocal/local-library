@@ -1,0 +1,35 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1> {{ title }} </h1>
+		<p> Welcome to <em> Local Library </em>, a basic Express app. </p>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			{{#if bookinstance_list }}
+				<ul>
+					{{#each bookinstance_list }}
+						<li> 
+							<a href='{{ this.url }}'> {{ this.book.title }} : {{ this.imprint }}</a> - 
+							{{#ifNotEquals this.status "Available"}}
+								<span>Due: {{ this.due_back }}</span>
+								{{#ifNotEquals this.status "Maintenance"}}
+									<span class="text-warning">{{ this.status }}</span>
+								{{/ifNotEquals}}
+							{{/ifNotEquals}}
+							{{#ifEquals this.status "Available"}}
+								<span class="text-success">{{ this.status }}</span>
+							{{/ifEquals}}
+							{{#ifEquals this.status "Maintenance"}}
+								<span class="text-danger">{{ this.status }}</span>
+							{{/ifEquals}}
+						</li>
+					{{/each}}
+				</ul>
+			{{else}}
+				<p> There are no book copies in this library. </p>
+			{{/if}}
+		{{/if}}
+	</div>
+</body>
