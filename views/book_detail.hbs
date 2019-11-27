@@ -1,0 +1,43 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1> Title: {{ book.title }} </h1>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			<p><strong>Author:</strong> <a href="{{ book.author.url }}">{{ book.author.name }}</a></p>
+			<p><strong>Summary:</strong> {{ book.summary }}</p>
+			<p><strong>ISBN:</strong> {{ book.isbn }}</p>
+			<strong>Genre:</strong>
+				<span>|</span>
+				{{#each book.genre}}
+					<a href={{this.url}}>{{this.name}}</a>
+					<span>|</span>
+				{{/each}}
+			<div>
+				<h2> Copies </h2>
+				{{#if book_instances }}
+					{{#each book_instances}}
+						<hr>
+						{{#ifNotEquals this.status "Available"}}
+							<p><strong>Due:</strong> {{ this.due_back_formatted }}</p>
+							{{#ifNotEquals this.status "Maintenance"}}
+								<p class="text-warning">{{ this.status }}</p>
+							{{/ifNotEquals}}
+						{{/ifNotEquals}}
+						{{#ifEquals this.status "Available"}}
+							<p class="text-success">{{ this.status }}</p>
+						{{/ifEquals}}
+						{{#ifEquals this.status "Maintenance"}}
+							<p class="text-danger">{{ this.status }}</p>
+						{{/ifEquals}}
+						<p><strong>Imprint:</strong> {{ this.imprint }}</p>
+						<p><strong>Id:</strong> {{ this._id }}</p>
+					{{/each}}
+				{{else}}
+					<p> There are no copies of this book in the library. </p>
+				{{/if}}
+		{{/if}}
+	</div>
+</body>
