@@ -1,0 +1,25 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1> Genre: {{ genre.name }} </h1>
+		<h2> Books </h2>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			{{#if genre_books }}
+				<ul>
+					{{#each genre_books}}
+						<li>
+							<a href="{{this.url}}">{{this.title}}</a>
+							<p>{{ this.summary }}</p>
+						</li>
+					{{/each}}
+				</ul>
+			{{else}}
+				<p> There are no books </p>
+			{{/if}}
+		{{/if}}
+
+	</div>
+</body>
