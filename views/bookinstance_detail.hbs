@@ -1,0 +1,27 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1> ID: {{ bookinstance._id }} </h1>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			<p><strong>Title:</strong> <a href="{{ bookinstance.book.url }}">{{ bookinstance.book.title }}</a></p>
+			<p><strong>Imprint:</strong> {{ bookinstance.imprint }}</p>
+			<p><strong>Status:</strong>
+				{{#ifNotEquals bookinstance.status "Available"}}
+					<span>Due: {{ bookinstance.due_back_formatted }}</span>
+					{{#ifNotEquals bookinstance.status "Maintenance"}}
+						<span class="text-warning">{{ bookinstance.status }}</span>
+					{{/ifNotEquals}}
+				{{/ifNotEquals}}
+				{{#ifEquals bookinstance.status "Available"}}
+					<span class="text-success">{{ bookinstance.status }}</span>
+				{{/ifEquals}}
+				{{#ifEquals bookinstance.status "Maintenance"}}
+					<span class="text-danger">{{ bookinstance.status }}</span>
+				{{/ifEquals}}
+			</p>
+		{{/if}}
+	</div>
+</body>
