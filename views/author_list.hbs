@@ -2,20 +2,23 @@
 <body class="grid-container">
 	{{> sidebar}}
 	<div>
-		<div>
-			{{#if error }}
-				<p> error </p>
-			{{else}}
+		<h1> {{ title }} </h1>
+		<p> Welcome to <em> Local Library </em>, a basic Express app. </p>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			{{#if author_list }}
 				<ul>
-					{{#if author_list }}
-						{{#each author_list}}
-							<li>
-								<a href="{{this.url}}">{{this.name}}</a> ({{this.date_of_birth}} - {{this.date_of_death}})
-							</li>
-						{{/each}}
-					{{/if}}
+					{{#each author_list}}
+						<li>
+							<a href="{{this.url}}">{{this.name}}</a> ({{this.birthdate}} - {{this.deathdate}})
+						</li>
+					{{/each}}
 				</ul>
+			{{else}}
+				<p> There are no authors </p>
 			{{/if}}
-		</div>
+		{{/if}}
+
 	</div>
 </body>
