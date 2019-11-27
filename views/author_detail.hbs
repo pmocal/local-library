@@ -1,0 +1,23 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1> Author: {{ author.name }} </h1>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			<p>{{author.birthdate}} - {{author.deathdate}}</p>
+			<div>
+				<h2> Books </h2>
+				{{#if author_books }}
+					{{#each author_books}}
+						<p><a href="{{ this.url }}">{{ this.title }}</a></p>
+						<p>{{ this.summary }}</p>
+					{{/each}}
+				{{else}}
+					<p> This author has no books. </p>
+				{{/if}}
+			</div>
+		{{/if}}
+	</div>
+</body>

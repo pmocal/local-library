@@ -1,5 +1,7 @@
 //the model we will use to access and update data
 var Author = require('../models/author');
+var Book = require('../models/book');
+var async = require('async');
 
 //Express middleware function standard form below: args for request & response
 
@@ -16,8 +18,25 @@ exports.author_list = function(req, res, next) {
 };
 
 //display detail page for a specific author
-exports.author_detail = function(req, res) {
-	res.send('Not implemented: Author detail: ' + req.params.id);
+exports.author_detail = function(req, res, next) {
+	async.parallel({
+		author: function(callback) {
+			Author.findById(req.params.id)
+				.exec(callback)
+		},
+		authors_books: function(callback) {
+			Book.find({ 'author': req.params.id }, 'title summary')
+			.exec(callback)
+		},
+	}, function(err, results) {
+		if (err) { return next(err); } //error in API usage
+		if (results.author==null) {
+			var err = new Error('Author not found');
+			err.status = 404;
+			return next(err);
+		}
+		res.render('author_detail', { title: 'Author Detail', author: results.author, author_books: results.authors_books});
+	});
 };
 
 //display author create form on GET
