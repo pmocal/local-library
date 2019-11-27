@@ -1,0 +1,24 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1> {{ title }} </h1>
+		<p> Welcome to <em> Local Library </em>, a basic Express app. </p>
+		{{#if error }}
+			<p> error </p>
+		{{else}}
+			{{#if genre_list }}
+				<ul>
+					{{#each genre_list}}
+						<li>
+							<a href="{{this.url}}">{{this.name}}</a>
+						</li>
+					{{/each}}
+				</ul>
+			{{else}}
+				<p> There are no genres </p>
+			{{/if}}
+		{{/if}}
+
+	</div>
+</body>
