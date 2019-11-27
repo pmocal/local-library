@@ -1,0 +1,25 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1>{{title}}</h1>
+		<form method='POST' action=''>
+			<div class="form-group">
+				<label for='name'>Genre:</label>
+				{{#if genre}}
+					<input id="name" value="{{genre.name}}" class="form-control" type='text' placeholder='Fantasy, Poetry etc.' name='name'></input>
+				{{else}}
+					<input id="name" class="form-control" type='text' placeholder='Fantasy, Poetry etc.' name='name' value=''></input>
+				{{/if}}
+				<button class="btn btn-primary" type='submit'>Submit</button>
+			</div>
+		</form>
+		{{#if errors}}
+			<ul>
+				{{#each errors}}
+					<li>{{this.msg}}</li>
+				{{/each}}
+			</ul>
+		{{/if}}
+	</div>
+</body>
