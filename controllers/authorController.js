@@ -4,6 +4,8 @@ var Book = require('../models/book');
 var async = require('async');
 
 //Express middleware function standard form below: args for request & response
+const { body,validationResult } = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
 
 // Display list of all Authors.
 exports.author_list = function(req, res, next) {
@@ -40,8 +42,8 @@ exports.author_detail = function(req, res, next) {
 };
 
 //display author create form on GET
-exports.author_create_get = function(req, res) {
-	res.send('Not implemented: author create GET');
+exports.author_create_get = function(req, res, next) {
+	res.render('author_form', { title: 'Create Author'});
 }
 
 //handle author create on POST
