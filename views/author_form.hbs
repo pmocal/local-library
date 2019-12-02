@@ -5,9 +5,30 @@
 		<h1>{{title}}</h1>
 		<form method='POST' action=''>
 			<div class="form-group">
-				<label for="first-name">First name:</label>
-				<input id="first-name" class="form-control" type="text" placeholder="First name" name="first_name">
+				{{#if author}}
+					<label for="first_name">First name:</label>
+					<input id="first_name" class="form-control" type="text" placeholder="First name" name="first_name" value="{{author.first_name}}">
+					<label for="family_name">Family name:</label>
+					<input id="family_name" class="form-control" type="text" placeholder="Family name" name="family_name" value="{{author.family_name}}">
+					<label for="date_of_birth">Date of birth:</label>
+					<input id="date_of_birth" class="form-control" type="text" placeholder="Date of birth" name="date_of_birth" value="{{author.date_of_birth}}">
+				{{else}}
+					<label for="first_name">First name:</label>
+					<input id="first_name" class="form-control" type="text" placeholder="First name" name="first_name">
+					<label for="family_name">Family name:</label>
+					<input id="family_name" class="form-control" type="text" placeholder="Family name" name="family_name">
+					<label for="date_of_birth">Date of birth:</label>
+					<input id="date_of_birth" class="form-control" type="text" placeholder="Date of birth" name="date_of_birth">
+				{{/if}}
+				<button class="btn btn-primary" type='submit'>Submit</button>
 			</div>
 		</form>
+		{{#if errors}}
+			<ul>
+				{{#each errors}}
+					<li>{{this.msg}}</li>
+				{{/each}}
+			</ul>
+		{{/if}}
 	</div>
 </body>
