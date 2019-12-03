@@ -54,9 +54,9 @@
 			{{/if}}
 			<div class="form-group">
 				<label>Genre:</label>
-				<div>
+				<div class="genre-form-group">
 					{{#each genres}}
-						<div style="display: inline; padding-right: 1%">
+						<div>
 							<input class="checkbox-input" type="checkbox" name="genre" id="{{this._id}}" value="{{this._id}}" checked="{{this.checked}}"></input>
 							<label for="{{this._id}}">{{this.name}}</label>
 						</div>

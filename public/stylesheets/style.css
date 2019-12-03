@@ -32,3 +32,17 @@
 .text-danger {
 	color: red;
 }
+
+.form-group {
+	padding: 1%;
+}
+
+.genre-form-group {
+	display: inline;
+	padding-right: 2%;
+}
+
+.genre-form-group div {
+	display: inline;
+	padding-right: 1%;
+}
