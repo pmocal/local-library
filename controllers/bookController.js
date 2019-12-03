@@ -90,6 +90,7 @@ exports.book_create_get = function(req, res, next) {
 exports.book_create_post = [
 	// Convert the genre to an array.
 	(req, res, next) => {
+		console.log(req.body.genre);
 		if(!(req.body.genre instanceof Array)){
 			if(typeof req.body.genre==='undefined')
 			req.body.genre=[];
@@ -106,8 +107,12 @@ exports.book_create_post = [
 	body('isbn', 'ISBN must not be empty').isLength({ min: 1 }).trim(),
 
 	// Sanitize fields (using wildcard).
-	sanitizeBody('*').escape(),
-
+	sanitizeBody('genre.*').escape(),
+	sanitizeBody('title').escape(),
+	sanitizeBody('author').escape(),
+	sanitizeBody('summary').escape(),
+	sanitizeBody('isbn').escape(),
+	
 	// Process request after validation and sanitization.
 	(req, res, next) => {
 		
