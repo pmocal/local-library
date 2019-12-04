@@ -14,10 +14,27 @@
 					<select id="author" class="form-control" type="select" placeholder="Select author" name="author" required="true">
 						{{#each authors}}
 							{{#ifEquals (toString this._id) book.author}}
-								<option value="{{this._id}}" selected="true">{{this.name}}</option>
+								{{#ifNotEquals (toString this._id) (get_Id book.author)}}
+									<option value="{{this._id}}" selected="true">{{this.name}}</option>
+								{{/ifNotEquals}}
 							{{/ifEquals}}
+
 							{{#ifNotEquals (toString this._id) book.author}}
-								<option value="{{this._id}}" selected="false">{{this.name}}</option>
+								{{#ifEquals (toString this._id) (get_Id book.author)}}
+									<option value="{{this._id}}" selected="true">{{this.name}}</option>
+								{{/ifEquals}}
+							{{/ifNotEquals}}
+
+							{{#ifEquals (toString this._id) book.author}}
+								{{#ifEquals (toString this._id) (get_Id book.author)}}
+									<option value="{{this._id}}" selected="true">{{this.name}}</option>
+								{{/ifEquals}}
+							{{/ifEquals}}
+
+							{{#ifNotEquals (toString this._id) (get_Id book.author)}}
+								{{#ifNotEquals (toString this._id) book.author}}
+									<option value="{{this._id}}" selected="false">{{this.name}}</option>
+								{{/ifNotEquals}}
 							{{/ifNotEquals}}
 						{{/each}}
 					</select>

@@ -1,0 +1,98 @@
+{{> header}}
+<body class="grid-container">
+	{{> sidebar}}
+	<div>
+		<h1>{{title}}</h1>
+		<form method='POST' action=''>
+			{{#if bookinstance}}
+				<div class="form-group">
+					<label for="book">Book:</label>
+					<select id="book" class="form-control" type="select" placeholder="Select book" name="book" required="true">
+						{{#each book_list}}
+							{{#ifEquals (toString this._id) (toString bookinstance.book)}}
+								<option value="{{this._id}}" selected="true">{{this.title}}</option>
+							{{/ifEquals}}
+							{{#ifNotEquals (toString this._id) (toString bookinstance.book)}}
+								<option value="{{this._id}}" selected="false">{{this.title}}</option>
+							{{/ifNotEquals}}
+						{{/each}}
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="imprint">Imprint:</label>
+					<input id="imprint" class="form-control" type="text" placeholder="Publisher and date information" name="imprint" value="{{bookinstance.imprint}}" required="true"></input>
+				</div>
+				<div class="form-group">
+					<label for="due_back">Date when book available:</label>
+					<input id="due_back" class="form-control" type="date" name="due_back" required="true" value="{{bookinstance.due_back}}"></input>
+				</div>
+			{{else}}
+				<div class="form-group">
+					<label for="book">Book:</label>
+					<select id="book" class="form-control" type="select" placeholder="Select book" name="book" required="true">
+						{{#each book_list}}
+							<option value="{{this._id}}">{{this.title}}</option>
+						{{/each}}
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="imprint">Imprint:</label>
+					<input id="imprint" class="form-control" type="text" placeholder="Publisher and date information" name="imprint" required="true" value=""></input>
+				</div>
+				<div class="form-group">
+					<label for="due_back">Date when book available:</label>
+					<input id="due_back" class="form-control" type="date" name="due_back" required="true" value=""></input>
+				</div>
+			{{/if}}
+			{{#if status}}
+				<div class="form-group">
+					<label for="status">Status:</label>
+					<select id="status" class="form-control" type="select" placeholder="Select status" name="status" required="true" >
+						{{#ifEquals "Maintenance" status}}
+							<option value="Maintenance" selected="true">Maintenance</option>
+						{{/ifEquals}}
+						{{#ifNotEquals "Maintenance" status}}
+							<option value="Maintenance" selected="false">Maintenance</option>
+						{{/ifNotEquals}}
+						{{#ifEquals "Available" status}}
+							<option value="Available" selected="true">Available</option>
+						{{/ifEquals}}
+						{{#ifNotEquals "Available" status}}
+							<option value="Available" selected="false">Available</option>
+						{{/ifNotEquals}}
+						{{#ifEquals "Loaned" status}}
+							<option value="Loaned" selected="true">Loaned</option>
+						{{/ifEquals}}
+						{{#ifNotEquals "Loaned" status}}
+							<option value="Loaned" selected="false">Loaned</option>
+						{{/ifNotEquals}}
+						{{#ifEquals "Reserved" status}}
+							<option value="Reserved" selected="true">Reserved</option>
+						{{/ifEquals}}
+						{{#ifNotEquals "Reserved" status}}
+							<option value="Reserved" selected="false">Reserved</option>
+						{{/ifNotEquals}}
+					</select>
+				</div>
+			{{else}}
+				<div class="form-group">
+					<label for="status">Status:</label>
+					<select id="status" class="form-control" type="select" placeholder="Select status" name="status" required="true" >
+						<option value="Maintenance">Maintenance</option>
+						<option value="Available">Available</option>
+						<option value="Loaned">Loaned</option>
+						<option value="Reserved">Reserved</option>
+					</select>
+				</div>
+			{{/if}}
+			<button class="btn btn-primary" type="submit">Submit</button>
+		</form>
+		{{#if errors}}
+			<ul>
+				{{#each errors}}
+					<li>{{this.msg}}</li>
+				{{/each}}
+			</ul>
+		{{/if}}
+	</div>
+</body>
