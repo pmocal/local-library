@@ -62,10 +62,11 @@ exports.bookinstance_create_post = [
 
 		// Create a BookInstance object with escaped and trimmed data.
 		var bookinstance = new BookInstance(
-			{ book: req.body.book,
-			  imprint: req.body.imprint,
-			  status: req.body.status,
-			  due_back: req.body.due_back
+			{
+				book: req.body.book,
+				imprint: req.body.imprint,
+				status: req.body.status,
+				due_back: req.body.due_back
 			});
 
 		if (!errors.isEmpty()) {

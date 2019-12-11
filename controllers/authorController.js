@@ -66,22 +66,23 @@ exports.author_create_post = [
 	(req, res, next) => {
 		// Extract the validation errors from a request.
 		const errors = validationResult(req);
-
+		// Data from form is valid.
+		// Create an Author object with escaped and trimmed data.
 		if (!errors.isEmpty()) {
 			// There are errors. Render form again with sanitized values/errors messages.
 			res.render('author_form', { title: 'Create Author', author: req.body, errors: errors.array() });
 			return;
 		}
 		else {
-			// Data from form is valid.
-			// Create an Author object with escaped and trimmed data.
 			var author = new Author(
-				{
-					first_name: req.body.first_name,
-					family_name: req.body.family_name,
-					date_of_birth: new Date(req.body.date_of_birth.toISOString().replace(/-/g, '\/').replace(/T.+/, '')),
-					date_of_death: new Date(req.body.date_of_death.toISOString().replace(/-/g, '\/').replace(/T.+/, ''))
-				});
+			{
+				first_name: req.body.first_name,
+				family_name: req.body.family_name,
+				date_of_birth: (req.body.date_of_birth == null) ? req.body.date_of_birth :
+					new Date(req.body.date_of_birth.toISOString().replace(/-/g, '\/').replace(/T.+/, '')),
+				date_of_death: (req.body.date_of_death == null) ? req.body.date_of_death :
+					new Date(req.body.date_of_death.toISOString().replace(/-/g, '\/').replace(/T.+/, '')),
+			});
 			author.save(function (err) {
 				if (err) { return next(err); }
 				// Successful - redirect to new author record.

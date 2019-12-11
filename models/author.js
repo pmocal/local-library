@@ -26,11 +26,25 @@ AuthorSchema
 	return this.date_of_birth ? moment(this.date_of_birth).format('MMMM Do, YYYY') : '';
 });
 
+//virtual for author's birth date
+AuthorSchema
+.virtual('birthdate_form')
+.get(function () {
+  return this.date_of_birth ? moment(this.date_of_birth).format('YYYY-MM-DD') : '';
+});
+
 //virtual for author's death date
 AuthorSchema
 .virtual('deathdate')
 .get(function () {
 	return this.date_of_death ? moment(this.date_of_death).format('MMMM Do, YYYY') : '';
+});
+
+//virtual for author's death date
+AuthorSchema
+.virtual('deathdate_form')
+.get(function () {
+  return this.date_of_death ? moment(this.date_of_death).format('YYYY-MM-DD') : '';
 });
 
 // Virtual for author's lifespan
