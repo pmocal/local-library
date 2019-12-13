@@ -164,17 +164,17 @@ exports.book_create_post = [
 ];
 
 // Display book delete form on GET.
-exports.book_delete_get = function(req, res) {
+exports.book_delete_get = function(req, res, next) {
 	res.send('NOT IMPLEMENTED: Book delete GET');
 };
 
 // Handle book delete on POST.
-exports.book_delete_post = function(req, res) {
+exports.book_delete_post = function(req, res, next) {
 	res.send('NOT IMPLEMENTED: Book delete POST');
 };
 
 // Display book update form on GET.
-exports.book_update_get = function(req, res) {
+exports.book_update_get = function(req, res, next) {
 	// Get book, authors and genres for form.
 	async.parallel({
 		book: function(callback) {
